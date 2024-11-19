@@ -1,4 +1,6 @@
 import { Client, GatewayIntentBits, Partials, EmbedBuilder } from 'discord.js';
+import fs from 'fs';
+import express from 'express'; 
 
 const client = new Client({
     intents: [
@@ -75,6 +77,17 @@ client.on('messageCreate', async (message) => {
         userMessageTimes[userId] = [currentTime];
         messagesToDelete[userId] = [message];
     }
+});
+
+const app = express();
+const port = 3000;
+
+app.get('/', (req, res) => {
+  res.sendStatus(200);
+});
+
+app.listen(port, () => {
+  console.log(`Sunucu ${port} numaralı bağlantı noktasında yürütülüyor.`);
 });
 
 client.login(process.env.TOKEN);
