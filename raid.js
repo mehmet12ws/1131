@@ -24,6 +24,9 @@ client.once('ready', () => {
     console.log(`Bot ${client.user.tag}`);
 });
 
+client.user.setActivity("marsı cebien atmış", { type: "PLAYING" }); 
+
+
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
