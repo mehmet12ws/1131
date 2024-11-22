@@ -18,7 +18,7 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5;
 const timeWindow = 10 * 1000;
 
-const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGofhoRJnOdMbkM83OWLnlmOrKzJJq7caIg&s";
+const imageUrl = "https://cdn.discordapp.com/attachments/1281266099387760842/1308163411036602461/togif.gif?ex=67418edd&is=67403d5d&hm=990d91c2c6f63ae1ef724748503af0bd42c46a2f4ed9585fd14f1494e51ddfac&";
 
 client.once('ready', () => {
     console.log(`Bot ${client.user.tag}`);
@@ -55,6 +55,9 @@ client.on('messageCreate', async (message) => {
                     content: `${message.author}`,
                     embeds: [embed],
                 });
+
+                await message.channel.send("<@940940179785535518> dışı herkes konuşabilir.");
+
 
                 messagesToDelete[userId] = [];
             } catch (error) {
