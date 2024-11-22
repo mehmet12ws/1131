@@ -15,7 +15,7 @@ const userMessageTimes = {};
 const messagesToDelete = {};
 
 const timeoutDuration = 10 * 1000; 
-const messageLimit = 10;
+const messageLimit = 5;
 const timeWindow = 10 * 1000;
 
 const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrGofhoRJnOdMbkM83OWLnlmOrKzJJq7caIg&s";
