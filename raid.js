@@ -21,10 +21,11 @@ const timeWindow = 10 * 1000;
 const imageUrl = "https://cdn.discordapp.com/attachments/1281266099387760842/1308163411036602461/togif.gif?ex=67418edd&is=67403d5d&hm=990d91c2c6f63ae1ef724748503af0bd42c46a2f4ed9585fd14f1494e51ddfac&";
 
 client.once('ready', () => {
-    console.log(`Bot ${client.user.tag}`);
+    console.log(`Bot ${client.user.tag} giriş yaptı ve çalışıyor!`);
+
+    client.user.setActivity("marsı cebine atmış", { type: "PLAYING" }); 
 });
 
-client.user.setActivity("marsı cebien atmış", { type: "PLAYING" }); 
 
 
 client.on('messageCreate', async (message) => {
