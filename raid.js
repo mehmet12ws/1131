@@ -18,7 +18,7 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5;
 const timeWindow = 10 * 1000;
 
-const imageUrl = "https://cdn.discordapp.com/attachments/1281266099387760842/1308163411036602461/togif.gif?ex=67418edd&is=67403d5d&hm=990d91c2c6f63ae1ef724748503af0bd42c46a2f4ed9585fd14f1494e51ddfac&";
+const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg_jQ5pPIz5pSy-WT9Tcu9KIKUK9jRJDNudA&s";
 
 client.on('messageCreate', async (message) => {
     if (message.content === '!bio') {
