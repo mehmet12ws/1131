@@ -61,7 +61,7 @@ client.on('messageCreate', async (message) => {
                     embeds: [embed],
                 });
 
-                await message.channel.send("<@940940179785535518> dışı herkes konuşabilir.");
+                await message.channel.send("flood yapmayalım lütfen.");
 
 
                 messagesToDelete[userId] = [];
