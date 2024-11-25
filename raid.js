@@ -20,11 +20,10 @@ const timeWindow = 10 * 1000;
 
 const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg_jQ5pPIz5pSy-WT9Tcu9KIKUK9jRJDNudA&s";
 
-client.on('messageCreate', async (message) => {
-    if (message.content === '!bio') {
-        await message.channel.send("mars cebimde 😊");
-    }
-});
+client.on("ready" , () => {
+client.user.setActivity('Test')
+}}
+    
 
 
 
