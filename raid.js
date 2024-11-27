@@ -20,6 +20,8 @@ const timeWindow = 10 * 1000;
 const imageUrl = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png?ex=6748bf89&is=67476e09&hm=0a578acfbb5038b731ca47cbdc49b24629e29813a89112d9e1d684f2985d547d&";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png?ex=6748bf89&is=67476e09&hm=0a578acfbb5038b731ca47cbdc49b24629e29813a89112d9e1d684f2985d547d&";
 const mehmet12ws = "carman";
+const mehmet = "sa";
+const mehmet1 = "selam";
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
@@ -36,6 +38,14 @@ client.on('messageCreate', async (message) => {
     if (message.content.includes(mehmet12ws)) {
         await message.reply("carman delinin biri");
     }
+
+    if (message.content.includes(mehmet)) {
+        await message.reply("aleyküm selam kardeşim");
+    }    
+
+    if (message.content.includes(mehmet1)) {
+    await message.reply("aleyküm selam kardeşim");
+    }  
 
     const userId = message.author.id;
     const currentTime = Date.now();
