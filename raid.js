@@ -27,7 +27,7 @@ client.on("ready", () => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.author.bot) return; 
+    if (message.author.bot) return;
 
     if (message.content.includes(urlToCheck)) {
         await message.reply("Komik mi yarram");
@@ -36,8 +36,6 @@ client.on('messageCreate', async (message) => {
     if (message.content.includes(mehmet12ws)) {
         await message.reply("carman delinin biri");
     }
-});
-
 
     const userId = message.author.id;
     const currentTime = Date.now();
