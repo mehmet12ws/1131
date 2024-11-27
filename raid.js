@@ -18,10 +18,10 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5;
 const timeWindow = 10 * 1000;
 
-const imageUrl = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSg_jQ5pPIz5pSy-WT9Tcu9KIKUK9jRJDNudA&s";
+const imageUrl = "https://cdn.discordapp.com/attachments/1279508387977236581/1311376803067330590/image.png?ex=6748a252&is=674750d2&hm=fb858076f1f10e63380cbef633920fc54713cff7184f8c503c306f75cef2e802&";
 
 client.on("ready", () => {
-    client.user.setActivity('marsı yedim');
+    client.user.setActivity('marsı yedim egepoyo carmanda aldım altıma ohh');
 });
 
 
