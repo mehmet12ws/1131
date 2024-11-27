@@ -27,7 +27,7 @@ client.on("ready", () => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.author.bot) return; // Bot mesajlarını yok say
+    if (message.author.bot) return; 
 
     if (message.content.includes(urlToCheck)) {
         await message.reply("Komik mi yarram");
