@@ -18,7 +18,7 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5;
 const timeWindow = 10 * 1000;
 
-const imageUrl = "https://cdn.discordapp.com/attachments/1279508387977236581/1311376803067330590/image.png?ex=6748a252&is=674750d2&hm=fb858076f1f10e63380cbef633920fc54713cff7184f8c503c306f75cef2e802&";
+const imageUrl = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png?ex=6748bf89&is=67476e09&hm=0a578acfbb5038b731ca47cbdc49b24629e29813a89112d9e1d684f2985d547d&";
 
 client.on("ready", () => {
     client.user.setActivity('marsı yedim egepoyo carmanda aldım altıma ohh');
