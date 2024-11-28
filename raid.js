@@ -31,6 +31,16 @@ client.on("ready", () => {
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
 
+    const words = message.content.split(/\s+/);
+
+    if (words.includes("sa")) {
+        await message.reply("aleyküm selam kardeşim");
+    }
+
+    if (words.includes("selam")) {
+        await message.reply("aleyküm selam kardeşim");
+    }
+
     if (message.content.includes(urlToCheck)) {
         await message.reply("Komik mi yarram");
     }
@@ -38,14 +48,6 @@ client.on('messageCreate', async (message) => {
     if (message.content.includes(mehmet12ws)) {
         await message.reply("carman delinin biri");
     }
-
-    if (message.content.includes(mehmet)) {
-        await message.reply("aleyküm selam kardeşim");
-    }    
-
-    if (message.content.includes(mehmet1)) {
-    await message.reply("aleyküm selam kardeşim");
-    }  
 
     const userId = message.author.id;
     const currentTime = Date.now();
@@ -100,6 +102,7 @@ client.on('messageCreate', async (message) => {
         messagesToDelete[userId] = [message];
     }
 });
+
 
 const app = express();
 const port = 3000;
