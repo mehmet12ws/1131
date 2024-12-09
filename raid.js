@@ -1,5 +1,4 @@
-import { Client, GatewayIntentBits, Partials, EmbedBuilder, AttachmentBuilder } from 'discord.js';
-import fs from 'fs';
+import { Client, GatewayIntentBits, Partials, AttachmentBuilder } from 'discord.js';
 import express from 'express';
 
 const client = new Client({
@@ -13,15 +12,15 @@ const client = new Client({
     partials: [Partials.Channel],
 });
 
+const TARGET_USER_ID = "899770593589751808"; 
+const TARGET_CHANNEL_ID = "1196885529845829674"; 
+const FLOOD_TIMEOUT = 10 * 1000; 
+const FLOOD_LIMIT = 5; 
+const FLOOD_TIME_WINDOW = 10 * 1000; 
+const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4";
+
 const userMessageTimes = {};
 const messagesToDelete = {};
-const timeoutDuration = 10 * 1000; 
-const messageLimit = 5; 
-const timeWindow = 10 * 1000; 
-
-const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4?ex=675861c8&is=67571048&hm=7217acf64caac3fb3b2a2eccf2bb5cfe3144ac638ed0fd863972f2d1c9c2c7cd&";
-const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png";
-const mehmet12ws = "carman";
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
@@ -29,12 +28,10 @@ client.on("ready", () => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.channel.type === 'DM' && message.author.id === "899770593589751808") {
-        const targetChannelId = "1196885529845829674"; 
-        const targetChannel = await client.channels.fetch(targetChannelId);
-
+    if (message.channel.type === 'DM' && message.author.id === TARGET_USER_ID) {
+        const targetChannel = await client.channels.fetch(TARGET_CHANNEL_ID);
         if (!targetChannel) {
-            console.error(`Hedef kanal bulunamadı: ${targetChannelId}`);
+            console.error(`Hedef kanal bulunamadı: ${TARGET_CHANNEL_ID}`);
             return;
         }
 
@@ -43,24 +40,26 @@ client.on('messageCreate', async (message) => {
         } catch (error) {
             console.error(`Mesaj gönderilemedi: ${error}`);
         }
+        return;
     }
-});
 
-const words = message.content.split(/\s+/);
+    if (!message.guild || message.author.bot) return;
 
-if (words.includes("sa")) {
-    await message.reply("aleyküm selam kardeşim");
-}
+    const words = message.content.split(/\s+/);
+
+    if (words.includes("sa")) {
+        await message.reply("aleyküm selam kardeşim");
+    }
 
     if (words.includes("selam")) {
         await message.reply("aleyküm selam kardeşim");
     }
 
-    if (message.content.includes(urlToCheck)) {
+    if (message.content.includes("https://cdn.discordapp.com/attachments/")) {
         await message.reply("Komik mi yarram");
     }
 
-    if (message.content.includes(mehmet12ws)) {
+    if (message.content.includes("carman")) {
         await message.reply("carman delinin biri");
     }
 
@@ -69,23 +68,13 @@ if (words.includes("sa")) {
 
     if (userMessageTimes[userId]) {
         let timestamps = userMessageTimes[userId];
-        timestamps = timestamps.filter((timestamp) => currentTime - timestamp < timeWindow);
+        timestamps = timestamps.filter((timestamp) => currentTime - timestamp < FLOOD_TIME_WINDOW);
         timestamps.push(currentTime);
 
-        if (timestamps.length >= messageLimit) {
+        if (timestamps.length >= FLOOD_LIMIT) {
             try {
                 const guildMember = await message.guild.members.fetch(userId);
-                await guildMember.timeout(timeoutDuration, "mehmet12ws anti-raid aktif.");
-
-                if (messagesToDelete[userId]) {
-                    for (const msg of messagesToDelete[userId]) {
-                        try {
-                            await msg.delete();
-                        } catch (error) {
-                            console.error(`Hata: ${msg.id}`);
-                        }
-                    }
-                }
+                await guildMember.timeout(FLOOD_TIMEOUT, "Flood yapma uyarısı.");
 
                 const attachment = new AttachmentBuilder(mp4Url, { name: 'video.mp4' });
                 await message.channel.send({
@@ -94,27 +83,14 @@ if (words.includes("sa")) {
                 });
 
                 await message.channel.send("Flood yapmayalım lütfen.");
-
-                messagesToDelete[userId] = [];
             } catch (error) {
                 console.error(`Bot yetki hatası: ${message.author.tag}`);
             }
         }
 
-        if (!messagesToDelete[userId]) {
-            messagesToDelete[userId] = [];
-        }
-
-        if (messagesToDelete[userId].length >= messageLimit) {
-            messagesToDelete[userId].shift();
-        }
-
-        messagesToDelete[userId].push(message);
-
         userMessageTimes[userId] = timestamps;
     } else {
         userMessageTimes[userId] = [currentTime];
-        messagesToDelete[userId] = [message];
     }
 });
 
