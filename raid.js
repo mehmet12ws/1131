@@ -46,11 +46,11 @@ client.on('messageCreate', async (message) => {
     }
 });
 
-    const words = message.content.split(/\s+/);
+const words = message.content.split(/\s+/);
 
-    if (words.includes("sa")) {
-        await message.reply("aleyküm selam kardeşim");
-    }
+if (words.includes("sa")) {
+    await message.reply("aleyküm selam kardeşim");
+}
 
     if (words.includes("selam")) {
         await message.reply("aleyküm selam kardeşim");
