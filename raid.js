@@ -8,7 +8,9 @@ const client = new Client({
         GatewayIntentBits.GuildMessages,
         GatewayIntentBits.MessageContent,
         GatewayIntentBits.GuildMembers,
+        GatewayIntentBits.DirectMessages,
     ],
+    partials: [Partials.Channel],
 });
 
 const userMessageTimes = {};
@@ -20,8 +22,6 @@ const timeWindow = 10 * 1000;
 const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4?ex=675861c8&is=67571048&hm=7217acf64caac3fb3b2a2eccf2bb5cfe3144ac638ed0fd863972f2d1c9c2c7cd&";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png";
 const mehmet12ws = "carman";
-const mehmet = "sa";
-const mehmet1 = "selam";
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
@@ -30,6 +30,15 @@ client.on("ready", () => {
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
+
+    if (message.channel.type === 'DM') {
+        const targetChannelId = "1196885529845829674";
+        const targetChannel = await client.channels.fetch(targetChannelId);
+        if (targetChannel) {
+            await targetChannel.send(message.content);
+        }
+        return;
+    }
 
     const words = message.content.split(/\s+/);
 
@@ -102,7 +111,6 @@ client.on('messageCreate', async (message) => {
         messagesToDelete[userId] = [message];
     }
 });
-
 
 const app = express();
 const port = 3000;
