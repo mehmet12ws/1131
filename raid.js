@@ -29,16 +29,22 @@ client.on("ready", () => {
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.author.bot) return;
-
-    if (message.channel.type === 'DM') {
-        const targetChannelId = "1196885529845829674";
+    if (message.channel.type === 'DM' && message.author.id === "899770593589751808") {
+        const targetChannelId = "1196885529845829674"; 
         const targetChannel = await client.channels.fetch(targetChannelId);
-        if (targetChannel) {
-            await targetChannel.send(message.content);
+
+        if (!targetChannel) {
+            console.error(`Hedef kanal bulunamadı: ${targetChannelId}`);
+            return;
         }
-        return;
+
+        try {
+            await targetChannel.send(`${message.content}`);
+        } catch (error) {
+            console.error(`Mesaj gönderilemedi: ${error}`);
+        }
     }
+});
 
     const words = message.content.split(/\s+/);
 
