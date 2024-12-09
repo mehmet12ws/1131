@@ -17,7 +17,7 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5; 
 const timeWindow = 10 * 1000; 
 
-const mp4Url = "https://cdn.discordapp.com/attachments/1196885529845829674/1315692831893098607/Ikarkii.mp4?ex=675855ef&is=6757046f&hm=379753886feea7631d0709f8c68969874ab7b88b63d04974de3da77ab530fc24&";
+const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4?ex=675861c8&is=67571048&hm=7217acf64caac3fb3b2a2eccf2bb5cfe3144ac638ed0fd863972f2d1c9c2c7cd&";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png";
 const mehmet12ws = "carman";
 const mehmet = "sa";
