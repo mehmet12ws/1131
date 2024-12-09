@@ -17,7 +17,7 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5; 
 const timeWindow = 10 * 1000; 
 
-const imageUrl = "https://cdn.discordapp.com/attachments/1095467401719582750/1314688814073122816/that_one_mehmet_edit.mp4?ex=6754aedf&is=67535d5f&hm=86a4a6e8ce611beb80969ea697a490ceb2e3dabfd1f58ec78afed5523e75bb35&";
+const imageUrl = "https://cdn.discordapp.com/attachments/1208781197531156540/1315688262387372052/Ikarkiiiiii........icardi_osimhen_gabrielsara_galatasaray_yunusakgun_muslera_barsalperylmaz_hakimziyech_mertens_mauroicardi_nelsson_abdulkerimbardakc_sachboey_davinsonsanchez_keremakturkoglu_.mp4?ex=675851ae&is=6757002e&hm=5c2a5d9757f8de94108c5867a24322874d586b096dd351a9c0687decf653af02&";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png?ex=6748bf89&is=67476e09&hm=0a578acfbb5038b731ca47cbdc49b24629e29813a89112d9e1d684f2985d547d&";
 const mehmet12ws = "carman";
 const mehmet = "sa";
