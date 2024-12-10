@@ -17,18 +17,16 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5; 
 const timeWindow = 10 * 1000; 
 
-const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4?ex=675861c8&is=67571048&hm=7217acf64caac3fb3b2a2eccf2bb5cfe3144ac638ed0fd863972f2d1c9c2c7cd&";
+const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4?ex=6759b348&is=675861c8&hm=112a302a4866c9f6f2eeea8636a88e239d56ed73b5eab6d71f852c8473a20d28&";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png";
 const mehmet12ws = "carman";
 const mehmet = "sa";
 const mehmet1 = "selam";
-const mehmet2 = "aleyküm selam";
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
     client.user.setActivity('marsı yedim egepoyo carmanda aldım altıma ohh');
 });
-
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
@@ -47,10 +45,6 @@ client.on('messageCreate', async (message) => {
         await message.reply("Komik mi yarram");
     }
 
-    if (words.includes("aleyküm selam")) {
-        await message.reply("aleyküm selam dedik ya kardeşim");
-    }
-    
     if (message.content.includes(mehmet12ws)) {
         await message.reply("carman delinin biri");
     }
@@ -80,7 +74,7 @@ client.on('messageCreate', async (message) => {
 
                 const attachment = new AttachmentBuilder(mp4Url, { name: 'video.mp4' });
                 await message.channel.send({
-                    content: ${message.author},
+                    content: `${message.author}`,
                     files: [attachment],
                 });
 
@@ -88,7 +82,7 @@ client.on('messageCreate', async (message) => {
 
                 messagesToDelete[userId] = [];
             } catch (error) {
-                console.error(Bot yetki hatası: ${message.author.tag});
+                console.error(`Bot yetki hatası: ${message.author.tag}`);
             }
         }
 
@@ -118,5 +112,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(Sunucu ${port} numaralı bağlantı noktasında çalışıyor.);
+    console.log(`Sunucu ${port} numaralı bağlantı noktasında çalışıyor.`);
 });
+
+client.login(process.env.TOKEN);
