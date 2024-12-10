@@ -114,5 +114,3 @@ app.get('/', (req, res) => {
 app.listen(port, () => {
     console.log(Sunucu ${port} numaralı bağlantı noktasında çalışıyor.);
 });
-
-client.login(process.env.TOKEN);
