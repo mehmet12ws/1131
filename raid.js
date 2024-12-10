@@ -24,9 +24,10 @@ const mehmet = "sa";
 const mehmet1 = "selam";
 
 client.on("ready", () => {
-    console.log(Bot ${client.user.tag} olarak giriş yaptı!);
+    console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
     client.user.setActivity('marsı yedim egepoyo carmanda aldım altıma ohh');
 });
+
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
