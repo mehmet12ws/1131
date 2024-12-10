@@ -22,6 +22,7 @@ const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1
 const mehmet12ws = "carman";
 const mehmet = "sa";
 const mehmet1 = "selam";
+const mehmet2 = "aleyküm selam";
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
@@ -46,6 +47,10 @@ client.on('messageCreate', async (message) => {
         await message.reply("Komik mi yarram");
     }
 
+    if (words.includes("aleyküm selam")) {
+        await message.reply("aleyküm selam dedik ya kardeşim");
+    }
+    
     if (message.content.includes(mehmet12ws)) {
         await message.reply("carman delinin biri");
     }
@@ -68,7 +73,7 @@ client.on('messageCreate', async (message) => {
                         try {
                             await msg.delete();
                         } catch (error) {
-                            console.error(Hata: ${msg.id});
+                            console.error(`Hata: ${msg.id}`);
                         }
                     }
                 }
