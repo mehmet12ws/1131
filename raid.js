@@ -17,7 +17,7 @@ const timeoutDuration = 10 * 1000;
 const messageLimit = 5; 
 const timeWindow = 10 * 1000; 
 
-const mp4Url = "https://cdn.discordapp.com/attachments/1279508387977236581/1315705553736962119/that_one_mehmet_edit.mp4?ex=6759b348&is=675861c8&hm=112a302a4866c9f6f2eeea8636a88e239d56ed73b5eab6d71f852c8473a20d28&";
+const mp4Url = "https://cdn.discordapp.com/attachments/1196885529845829674/1316817989680500736/that_one_mehmet_edit.mp4?ex=675c6dd2&is=675b1c52&hm=abe664d269126b6802c6188f9861a1947fec4f3c49da3026542e384564edc130&";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png";
 const mehmet12ws = "carman";
 const mehmet = "sa";
@@ -46,7 +46,7 @@ client.on('messageCreate', async (message) => {
     }
 
     if (message.content.includes(mehmet12ws)) {
-        await message.reply("carman delinin biri");
+        await message.reply("C si büyük olsun");
     }
 
     const userId = message.author.id;
