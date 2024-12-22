@@ -23,10 +23,28 @@ const mehmet12ws = "carman";
 const mehmet = "sa";
 const mehmet1 = "selam";
 
+const kurtlarVadisiMessages = [
+    "Benim rahat etmediğim dünyada kimse istirahat edemez.",
+    "ölüm ölüm dediğin nedir ki gülüm ben senin için yaşamayı göze almışım.",
+    "aşk mı o beni 0ldürür usta.",
+    "kadın milletinden hiç yüzümüz gülmedi be orhan.",
+    "senin abinde nah böyle var",
+];
+
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
     client.user.setActivity('Tyix Çok Konuşmuş Carman Pnd Köpeğini Alırım Şimdi');
-});
+
+setInterval(() => {
+    const randomMessage = kurtlarVadisiMessages[Math.floor(Math.random() * kurtlarVadisiMessages.length)];
+    
+    const channel = client.channels.cache.get('1196885529845829674'); 
+    
+    if (channel && channel.isText()) {
+        channel.send(randomMessage);
+    }
+}, 3600000); // 1 saat (3600000 ms)
+
 
 client.on('messageCreate', async (message) => {
     if (message.author.bot) return;
@@ -72,8 +90,7 @@ client.on('messageCreate', async (message) => {
                     }
                 }
 
-                // Burada mp4 URL'sini doğrudan mesaj olarak gönderiyoruz
-                await message.channel.send(mp4Url); // URL'yi mesaj olarak göndermek
+                await message.channel.send(mp4Url); 
 
                 await message.channel.send("Flood yapmayalım lütfen.");
 
