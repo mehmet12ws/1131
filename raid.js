@@ -25,7 +25,7 @@ const mehmet1 = "selam";
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
-    client.user.setActivity('marsı yedim egepoyo carmanda aldım altıma ohh');
+    client.user.setActivity('Tyix Çok Konuşmuş Carman Pnd Köpeğini Alırım Şimdi');
 });
 
 client.on('messageCreate', async (message) => {
@@ -72,11 +72,8 @@ client.on('messageCreate', async (message) => {
                     }
                 }
 
-                const attachment = new AttachmentBuilder(mp4Url, { name: 'video.mp4' });
-                await message.channel.send({
-                    content: `${message.author}`,
-                    files: [attachment],
-                });
+                // Burada mp4 URL'sini doğrudan mesaj olarak gönderiyoruz
+                await message.channel.send(mp4Url); // URL'yi mesaj olarak göndermek
 
                 await message.channel.send("Flood yapmayalım lütfen.");
 
