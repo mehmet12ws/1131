@@ -1,4 +1,4 @@
-import { Client, GatewayIntentBits } from 'discord.js';
+import { Client, GatewayIntentBits, ChannelType } from 'discord.js';
 import express from 'express';
 
 const client = new Client({
@@ -16,46 +16,51 @@ const timeoutDuration = 20 * 1000;
 const messageLimit = 5; 
 const timeWindow = 10 * 1000; 
 
-const mp4Url = "https://cdn.discordapp.com/attachments/1196885529845829674/1316820602002079805/inter_tecavuz.mp4?ex=675c7040&is=675b1ec0&hm=fc85c6ab7a3506d27c8254dca88057154facbcaea286a4a1abb14cf8345c051b&";
+const mp4Url = "https://cdn.discordapp.com/attachments/1196885529845829674/1316820602002079805/inter_tecavuz.mp4";
 const urlToCheck = "https://cdn.discordapp.com/attachments/1196885529845829674/1311408173176979539/image.png";
 const mehmet12ws = "carman";
 const kurtlarVadisiMessages = [
     "Benim rahat etmediğim dünyada kimse istirahat edemez.",
-    "ölüm ölüm dediğin nedir ki gülüm ben senin için yaşamayı göze almışım.",
-    "aşk mı o beni 0ldürür usta.",
-    "kadın milletinden hiç yüzümüz gülmedi be orhan.",
-    "senin abinde nah böyle var",
+    "Ölüm ölüm dediğin nedir ki gülüm ben senin için yaşamayı göze almışım.",
+    "Aşk mı? O beni öldürür usta.",
+    "Kadın milletinden hiç yüzümüz gülmedi be Orhan.",
+    "Senin abin de nah böyle var.",
 ];
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
     client.user.setActivity('Tyix Çok Konuşmuş Carman Pnd Köpeğini Alırım Şimdi');
 
-    setInterval(() => {
+    const channel = client.channels.cache.get('1196885529845829674'); 
+
+    if (channel && channel.type === ChannelType.GuildText) {
         const randomMessage = kurtlarVadisiMessages[Math.floor(Math.random() * kurtlarVadisiMessages.length)];
-        const channel = client.channels.cache.get('1196885529845829674'); 
-        if (channel && channel.isText()) {
-            channel.send(randomMessage);
-        }
-    }, 3600000); // 1 saat (3600000 ms)
+        channel.send(randomMessage).catch(console.error);
+
+        setInterval(() => {
+            const randomMessage = kurtlarVadisiMessages[Math.floor(Math.random() * kurtlarVadisiMessages.length)];
+            channel.send(randomMessage).catch(console.error);
+        }, 3600000); 
+    } else {
+        console.error("Belirtilen kanal bulunamadı veya metin kanalı değil.");
+    }
 });
 
-// Mesajları dinleyen event
 client.on('messageCreate', async (message) => {
-    if (message.author.bot) return;
+    if (message.author.bot) return; 
 
     const words = message.content.split(/\s+/);
 
     if (words.includes("sa")) {
-        await message.reply("aleyküm selam kardeşim");
+        await message.reply("Aleyküm selam kardeşim!");
     }
 
     if (message.content.includes(urlToCheck)) {
-        await message.reply("Komik mi yarram");
+        await message.reply("Komik mi yarram?");
     }
 
     if (message.content.includes(mehmet12ws)) {
-        await message.reply("C si büyük olsun");
+        await message.reply("C'si büyük olsun.");
     }
 
     const userId = message.author.id;
@@ -69,14 +74,14 @@ client.on('messageCreate', async (message) => {
         if (timestamps.length >= messageLimit) {
             try {
                 const guildMember = await message.guild.members.fetch(userId);
-                await guildMember.timeout(timeoutDuration, "mehmet12ws anti-raid aktif.");
+                await guildMember.timeout(timeoutDuration, "Anti-raid aktif!");
 
                 if (messagesToDelete[userId]) {
                     for (const msg of messagesToDelete[userId]) {
                         try {
                             await msg.delete();
                         } catch (error) {
-                            console.error(`Hata: ${msg.id}`);
+                            console.error(`Mesaj silinirken hata oluştu: ${msg.id}`);
                         }
                     }
                 }
@@ -85,7 +90,7 @@ client.on('messageCreate', async (message) => {
                 await message.channel.send("Flood yapmayalım lütfen.");
                 messagesToDelete[userId] = [];
             } catch (error) {
-                console.error(`Bot yetki hatası: ${message.author.tag}`);
+                console.error(`Yetki hatası: ${message.author.tag}`);
             }
         }
 
