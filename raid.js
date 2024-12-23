@@ -24,7 +24,13 @@ const kurtlarVadisiMessages = [
     "Ölüm ölüm dediğin nedir ki gülüm ben senin için yaşamayı göze almışım.",
     "Aşk mı? O beni öldürür usta.",
     "Kadın milletinden hiç yüzümüz gülmedi be Orhan.",
-    "Senin abin de nah böyle var.",
+    "nasılsa cennete gidemeyeceğiz memati ,cehennemi hak edelim",
+    "kötü köpek sürüye kurt getirdi aslan amca.",
+    "itaatsizliğin raconunu biz koymadık ama biz uygularız",
+    "memati ortalığı ayağa kaldır güneş yokken gözlük takan adam benimdir",
+    "elif daima var. sadece var olanı sevmez insan. anılarını sever, geçmişini sever, ilklerini sever, sonlarını sever. yanında olsa da sever, olmasa da sever. ben uzun yıllar elifin yanında yoktum, beni sevdi. şimdi o benim yanımda yok, ne değişti ki ben onu sevmekten vazgeçeyim.",
+    "kapı kapı dolaşma vakti bitmiştir yazıhanecilik bitmiştir bu saatten sonra kendi kapımıza hakim olacağız it de uğrar çakal da uğrar aslan da uğrar ite it gibi çakala çakal gibi aslana aslan gibi davranıcağız.",
+    "hapşu hapşu hapşu",
 ];
 
 client.on("ready", () => {
@@ -40,7 +46,7 @@ client.on("ready", () => {
         setInterval(() => {
             const randomMessage = kurtlarVadisiMessages[Math.floor(Math.random() * kurtlarVadisiMessages.length)];
             channel.send(randomMessage).catch(console.error);
-        }, 3600000); 
+        }, 86.400.000); 
     } else {
         console.error("Belirtilen kanal bulunamadı veya metin kanalı değil.");
     }
