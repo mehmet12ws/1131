@@ -52,7 +52,7 @@ client.on("ready", () => {
         setInterval(() => {
             const randomMessage = kurtlarVadisiMessages[Math.floor(Math.random() * kurtlarVadisiMessages.length)];
             channel.send(randomMessage).catch(console.error);
-        }, 3600); 
+        }, 3600000); 
     } else {
         console.error("Belirtilen kanal bulunamadı veya metin kanalı değil.");
     }
