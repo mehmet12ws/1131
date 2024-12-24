@@ -31,6 +31,12 @@ const kurtlarVadisiMessages = [
     "elif daima var. sadece var olanı sevmez insan. anılarını sever, geçmişini sever, ilklerini sever, sonlarını sever. yanında olsa da sever, olmasa da sever. ben uzun yıllar elifin yanında yoktum, beni sevdi. şimdi o benim yanımda yok, ne değişti ki ben onu sevmekten vazgeçeyim.",
     "kapı kapı dolaşma vakti bitmiştir yazıhanecilik bitmiştir bu saatten sonra kendi kapımıza hakim olacağız it de uğrar çakal da uğrar aslan da uğrar ite it gibi çakala çakal gibi aslana aslan gibi davranıcağız.",
     "hapşu hapşu hapşu",
+    "Çok Şey Konuşulabilir Ama Ayrılık Tarif Edilemez",
+    "Sen En Büyük Günahların Bedelisin",
+    "Arda Turan Üzgün",
+    "Yaptıklarım İçin Çok Pişmanım",
+    "Sabah Ezanını Duymayan Adam İnsanlıktan Nasibini Alamaz",
+    "Baktı Herkes Uyumuş Onunda Uyuması Gerek Uykusuzluk İşte",    
 ];
 
 client.on("ready", () => {
