@@ -12,16 +12,16 @@ const client = new Client({
 
 const userMessageTimes = {}; 
 const messagesToDelete = {}; 
-const timeoutDuration = 20 * 1000; 
+const timeoutDuration = 20 * 1000; // 20 saniye timeout süresi
 const messageLimit = 5; 
-const timeWindow = 10 * 1000; 
+const timeWindow = 10 * 1000; // 10 saniye içerisinde 5 mesaj gönderilirse flood olarak sayılır
 
 client.on("ready", () => {
     console.log(`Bot ${client.user.tag} olarak giriş yaptı!`);
 });
 
 client.on('messageCreate', async (message) => {
-    if (message.author.bot) return; 
+    if (message.author.bot) return;
 
     const userId = message.author.id;
     const currentTime = Date.now();
@@ -33,41 +33,52 @@ client.on('messageCreate', async (message) => {
 
         if (timestamps.length >= messageLimit) {
             try {
-                // Kullanıcıyı timeout'a alıyoruz
+                // Kullanıcıyı timeout'a alıyoruz (mute uyguluyoruz)
                 const guildMember = await message.guild.members.fetch(userId);
                 await guildMember.timeout(timeoutDuration, "Anti-raid aktif!");
 
-                // Mesajları anında siliyoruz
+                // Anında mesajı siliyoruz
                 await message.delete();
+                console.log(`Mesaj silindi: ${message.id}`);
+
+                // Kullanıcının daha önceki mesajlarını paralel olarak siliyoruz
                 if (messagesToDelete[userId]) {
-                    for (const msg of messagesToDelete[userId]) {
+                    const deletePromises = messagesToDelete[userId].map(async (msg) => {
                         try {
-                            await msg.delete();  // Önceden gönderilen mesajları da siliyoruz
+                            await msg.delete();
+                            console.log(`Mesaj silindi: ${msg.id}`);
                         } catch (error) {
-                            console.error(`Mesaj silinirken hata oluştu: ${msg.id}`);
+                            console.error(`Mesaj silinirken hata oluştu: ${msg.id} - ${error.message}`);
                         }
-                    }
+                    });
+
+                    // Tüm mesaj silme işlemleri paralel olarak başlatılıyor
+                    await Promise.all(deletePromises);
                 }
 
-                messagesToDelete[userId] = [];  // Mesajları silindikten sonra sıfırlıyoruz
+                // Mesajları sıfırlıyoruz
+                messagesToDelete[userId] = [];
             } catch (error) {
-                console.error(`Yetki hatası: ${message.author.tag}`);
+                console.error(`Yetki hatası: ${message.author.tag} - ${error.message}`);
             }
         }
 
+        // Mesajların sayısını ve zamanını kontrol ediyoruz
         if (!messagesToDelete[userId]) {
             messagesToDelete[userId] = [];
         }
 
         if (messagesToDelete[userId].length >= messageLimit) {
-            messagesToDelete[userId].shift();
+            messagesToDelete[userId].shift(); // Mesaj sayısını sınırlıyoruz
         }
 
-        messagesToDelete[userId].push(message);  // Mesajları kayıt altına alıyoruz
-        userMessageTimes[userId] = timestamps;  // Kullanıcının mesaj zamanlarını güncelliyoruz
+        // Mesajı kayıt altına alıyoruz
+        messagesToDelete[userId].push(message);
+        userMessageTimes[userId] = timestamps;
     } else {
+        // İlk mesajı kayıt altına alıyoruz
         userMessageTimes[userId] = [currentTime];
-        messagesToDelete[userId] = [message];  // İlk mesajı kayıt altına alıyoruz
+        messagesToDelete[userId] = [message];
     }
 });
 
