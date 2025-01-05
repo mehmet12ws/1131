@@ -33,19 +33,23 @@ client.on('messageCreate', async (message) => {
 
         if (timestamps.length >= messageLimit) {
             try {
+                // Kullanıcıyı timeout'a alıyoruz
                 const guildMember = await message.guild.members.fetch(userId);
                 await guildMember.timeout(timeoutDuration, "Anti-raid aktif!");
 
+                // Mesajları anında siliyoruz
+                await message.delete();
                 if (messagesToDelete[userId]) {
                     for (const msg of messagesToDelete[userId]) {
                         try {
-                            await msg.delete();
+                            await msg.delete();  // Önceden gönderilen mesajları da siliyoruz
                         } catch (error) {
                             console.error(`Mesaj silinirken hata oluştu: ${msg.id}`);
                         }
                     }
                 }
-                messagesToDelete[userId] = [];
+
+                messagesToDelete[userId] = [];  // Mesajları silindikten sonra sıfırlıyoruz
             } catch (error) {
                 console.error(`Yetki hatası: ${message.author.tag}`);
             }
@@ -59,11 +63,11 @@ client.on('messageCreate', async (message) => {
             messagesToDelete[userId].shift();
         }
 
-        messagesToDelete[userId].push(message);
-        userMessageTimes[userId] = timestamps;
+        messagesToDelete[userId].push(message);  // Mesajları kayıt altına alıyoruz
+        userMessageTimes[userId] = timestamps;  // Kullanıcının mesaj zamanlarını güncelliyoruz
     } else {
         userMessageTimes[userId] = [currentTime];
-        messagesToDelete[userId] = [message];
+        messagesToDelete[userId] = [message];  // İlk mesajı kayıt altına alıyoruz
     }
 });
 
